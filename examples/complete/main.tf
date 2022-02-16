@@ -5,7 +5,5 @@ provider "aws" {
 module "ecr" {
   source = "../../"
 
-  encryption_configuration = var.encryption_configuration
-
   context = module.this.context
 }

@@ -24,7 +24,7 @@ func TestExamplesComplete(t *testing.T) {
 		TerraformDir: "../../examples/complete",
 		Upgrade:      true,
 		// Variables to pass to our Terraform code using -var-file options
-		VarFiles: []string{"fixtures.us-east-2.tfvars"},
+		VarFiles: []string{"fixtures.us-east-1.tfvars"},
 		Vars: map[string]interface{}{
 			"attributes": attributes,
 		},
@@ -38,7 +38,7 @@ func TestExamplesComplete(t *testing.T) {
 
 	// Run `terraform output` to get the value of an output variable
 	repositoryName := terraform.Output(t, terraformOptions, "repository_name")
-	expectedRepositoryName := "eg-test-ecr-test-" + randId
+	expectedRepositoryName := "eg-test-ecrpublic-test-" + randId
 	// Verify we're getting back the outputs we expect
 	assert.Equal(t, expectedRepositoryName, repositoryName)
 }

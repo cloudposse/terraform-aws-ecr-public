@@ -33,27 +33,21 @@ github_repo: cloudposse/terraform-aws-ecr-public
 # Badges to display
 badges:
   - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse/terraform-aws-ecr-public.svg"
-    url: "https://github.com/cloudposse/terraform-aws-ecr-public/releases/latest"
+    image: "https://img.shields.io/github/release/cloudposse/terraform-aws-ecr.svg"
+    url: "https://github.com/cloudposse/terraform-aws-ecr/releases/latest"
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
 
-related:
-  - name: "terraform-aws-jenkins"
-    description: "Terraform module to build Docker image with Jenkins, save it to an ECR repo, and deploy to Elastic Beanstalk running Docker stack"
-    url: "https://github.com/cloudposse/terraform-aws-jenkins"
-  - name: "terraform-aws-kops-ecr"
-    description: "Terraform module to provision an ECR repository and grant users and kubernetes nodes access to it."
-    url: "https://github.com/cloudposse/terraform-aws-kops-ecr"
+#related:
 
 # Short description of this project
 description: |-
-  Terraform module to provision an [`AWS ECR Docker Container registry`](https://aws.amazon.com/ecr/).
+  Terraform module to provision a Public [`AWS ECR Docker Container registry`](https://docs.aws.amazon.com/AmazonECR/latest/public/public-repositories.html/).
 
 # How to use this project
 usage: |-
-  The module creates one or more Elastic Container Registry (ECR) repositories. All repositories created
+  The module creates one or more Public Elastic Container Registry (ECR) repositories. All repositories created
   will share the same configuration. Use this module multiple times to create repositories with
   different configurations.
 
@@ -64,24 +58,24 @@ usage: |-
   If you do not provide any names in `image_names`, the module will create a single ECR repo
   named `namespace-stage-name` or just `name` depending on the value of `use_fullname`.
 
-  Access to the repositories is granted to via the `principals_full_access` and
-  `principals_readonly_access` lists, which are lists of strings that can designate [any valid AWS
-  Principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying).
-  This module only creates the Repository Policy allowing those Principals access.
-  The Principals will still separately need IAM policies allowing them permission
-  to execute ECR actions against the repository. For more details, see
+  Write access to the repositories is granted to via the `principals_full_access` list, which is a list of strings that 
+  can designate [any valid AWS Principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying).
+  This module only creates the Repository Policy allowing those Principals access. The Principals will still separately 
+  need IAM policies allowing them permission to execute ECR actions against the repository. For more details, see
   [How Amazon Elastic Container Registry Works with IAM](https://docs.aws.amazon.com/AmazonECR/latest/userguide/security_iam_service-with-iam.html).
 
   Include this repository as a module in your existing terraform code:
 
   ```hcl
   # IAM Role to be granted ECR permissions
-  data "aws_iam_role" "ecr" {
+  data "aws_iam_role" "ecrpublic" {
     name = "ecr"
   }
 
-  module "ecr" {
-    source                 = "git::https://github.com/cloudposse/terraform-aws-ecr-public.git?ref=master"
+  module "ecrpublic" {
+    source = "cloudposse/ecr-public/aws"
+    # Cloud Posse recommends pinning every module to a specific version
+    # version     = "x.x.x"
     namespace              = "eg"
     stage                  = "test"
     name                   = "ecr"
@@ -95,13 +89,5 @@ include:
 
 # Contributors to this project
 contributors:
-  - name: "Igor Rodionov"
-    github: "goruha"
-  - name: "Andriy Knysh"
-    github: "aknysh"
-  - name: "Sergey Vasilyev"
-    github: "s2504s"
-  - name: "Ivan Pinatti"
-    github: "ivan-pinatti"
-  - name: "Erik Osterman"
-    github: "osterman"
+  - name: "Matt Calhoun"
+    github: "mcalhoun"
