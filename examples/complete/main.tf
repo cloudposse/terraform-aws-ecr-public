@@ -1,7 +1,11 @@
-module "example" {
-  source = "../.."
+provider "aws" {
+  region = var.region
+}
 
-  example = var.example
+module "ecr" {
+  source = "../../"
+
+  encryption_configuration = var.encryption_configuration
 
   context = module.this.context
 }

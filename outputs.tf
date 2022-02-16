@@ -1,14 +1,35 @@
-output "id" {
-  description = "ID of the created example"
-  value       = module.this.enabled ? module.this.id : null
+output "registry_id" {
+  value       = module.this.enabled ? aws_ecr_repository.name[local.image_names[0]].registry_id : ""
+  description = "Registry ID"
 }
 
-output "example" {
-  description = "Example output"
-  value       = module.this.enabled ? local.example : null
+output "repository_name" {
+  value       = module.this.enabled ? aws_ecr_repository.name[local.image_names[0]].name : ""
+  description = "Name of first repository created"
 }
 
-output "random" {
-  description = "Stable random number for this example"
-  value       = module.this.enabled ? join("", random_integer.example[*].result) : null
+output "repository_url" {
+  value       = module.this.enabled ? aws_ecr_repository.name[local.image_names[0]].repository_url : ""
+  description = "URL of first repository created"
+}
+
+output "repository_arn" {
+  value       = module.this.enabled ? aws_ecr_repository.name[local.image_names[0]].arn : ""
+  description = "ARN of first repository created"
+}
+
+output "repository_url_map" {
+  value = zipmap(
+    values(aws_ecr_repository.name)[*].name,
+    values(aws_ecr_repository.name)[*].repository_url
+  )
+  description = "Map of repository names to repository URLs"
+}
+
+output "repository_arn_map" {
+  value = zipmap(
+    values(aws_ecr_repository.name)[*].name,
+    values(aws_ecr_repository.name)[*].arn
+  )
+  description = "Map of repository names to repository ARNs"
 }

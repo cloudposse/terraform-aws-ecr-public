@@ -1,4 +1,12 @@
-variable "example" {
-  type        = string
-  description = "The value which will be passed to the example module"
+variable "region" {
+  type = string
+}
+
+variable "encryption_configuration" {
+  type = object({
+    encryption_type = string
+    kms_key         = any
+  })
+  description = "ECR encryption configuration"
+  default     = null
 }

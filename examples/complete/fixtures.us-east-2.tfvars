@@ -1,10 +1,14 @@
+enabled = true
+
 region = "us-east-2"
 
 namespace = "eg"
 
-environment = "ue2"
-
 stage = "test"
 
-name = "example"
+name = "ecr-test"
 
+encryption_configuration = {
+  encryption_type = "AES256"
+  kms_key         = null
+}

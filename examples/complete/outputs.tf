@@ -1,14 +1,14 @@
-output "id" {
-  description = "ID of the created example"
-  value       = module.example.id
+output "registry_id" {
+  value       = module.ecr.registry_id
+  description = "Registry ID"
 }
 
-output "example" {
-  description = "Output \"example\" from example module"
-  value       = module.example.example
+output "registry_url" {
+  value       = module.ecr.repository_url
+  description = "Repository URL"
 }
 
-output "random" {
-  description = "Output \"random\" from example module"
-  value       = module.example.random
+output "repository_name" {
+  value       = module.ecr.repository_name
+  description = "Registry name"
 }

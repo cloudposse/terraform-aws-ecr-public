@@ -1,8 +1,8 @@
-module github.com/cloudposse/terraform-example-module
+module github.com/cloudposse/terraform-aws-ecr-public
 
-go 1.16
+go 1.14
 
 require (
-	github.com/gruntwork-io/terratest v0.40.0
-	github.com/stretchr/testify v1.7.0
+	github.com/gruntwork-io/terratest v0.29.0
+	github.com/stretchr/testify v1.6.1
 )
