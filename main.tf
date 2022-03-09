@@ -6,23 +6,22 @@ locals {
 }
 
 resource "aws_ecrpublic_repository" "this" {
-  for_each        = toset(module.this.enabled ? local.image_names : [])
-  repository_name = each.value
+  for_each        = toset(module.this.enabled ? local.repository_configs : [])
+  repository_name = each.value["name"]
 
   catalog_data {
-    about_text        = var.about_text
-    architectures     = var.architectures
-    description       = var.description
-    logo_image_blob   = var.logo_image_blob
-    operating_systems = var.operating_systems
-    usage_text        = var.usage_text
+    about_text    = each.value["name"]
+    usage_text    = each.value["usage_text"]
+    architectures = each.value["architectures"]
+    description   = each.value["description"]
+    #logo_image_blob   = var.logo_image_blob
+    operating_systems = each.value["operating_systems"]
   }
 }
 
 data "aws_iam_policy_document" "empty" {
   count = module.this.enabled ? 1 : 0
 }
-
 
 data "aws_iam_policy_document" "resource_full_access" {
   count = module.this.enabled ? 1 : 0
