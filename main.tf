@@ -6,7 +6,7 @@ locals {
 }
 
 resource "aws_ecrpublic_repository" "this" {
-  for_each        = toset(module.this.enabled ? var.repository_configs : [])
+  for_each        = module.this.enabled ? var.repository_configs : []
   repository_name = each.value["name"]
 
   catalog_data {
