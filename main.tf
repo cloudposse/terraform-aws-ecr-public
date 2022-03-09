@@ -2,7 +2,7 @@ locals {
   principals_full_access_non_empty = length(var.principals_full_access) > 0 ? true : false
   ecr_need_policy                  = length(var.principals_full_access) + length(var.principals_readonly_access) > 0 ? true : false
   _name                            = var.use_fullname ? module.this.id : module.this.name
-  image_names                      = length(var.image_names) > 0 ? var.image_names : [local._name]
+  #image_names                      = length(var.image_names) > 0 ? var.image_names : [local._name]
 }
 
 resource "aws_ecrpublic_repository" "this" {
@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "resource" {
 }
 
 resource "aws_ecrpublic_repository_policy" "this" {
-  for_each        = toset(local.ecr_need_policy && module.this.enabled ? local.image_names : [])
-  repository_name = aws_ecrpublic_repository.this[each.value].repository_name
+  for_each        = toset(local.ecr_need_policy && module.this.enabled ? var.repository_configs : [])
+  repository_name = aws_ecrpublic_repository.this[each.value.name].repository_name
   policy          = join("", data.aws_iam_policy_document.resource.*.json)
 }
