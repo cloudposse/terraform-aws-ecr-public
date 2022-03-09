@@ -10,7 +10,7 @@ resource "aws_ecrpublic_repository" "this" {
   repository_name = each.value["name"]
 
   catalog_data {
-    about_text    = each.value["name"]
+    about_text    = each.value["about_text"]
     usage_text    = each.value["usage_text"]
     architectures = each.value["architectures"]
     description   = each.value["description"]
