@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "resource" {
 }
 
 resource "aws_ecrpublic_repository_policy" "this" {
-  for_each        = toset(local.ecr_need_policy && module.this.enabled ? var.repository_configs : [])
+  for_each        = local.ecr_need_policy && module.this.enabled ? var.repository_configs : []
   repository_name = aws_ecrpublic_repository.this[each.value.name].repository_name
   policy          = join("", data.aws_iam_policy_document.resource.*.json)
 }
