@@ -4,7 +4,7 @@ locals {
 }
 
 resource "aws_ecrpublic_repository" "this" {
-  for_each        = { for o in module.this.enabled ? var.repository_configs : [] : o.name => o }
+  for_each        = { for o var.repository_configs : o.name => o if module.this.enabled }
   repository_name = each.value["name"]
 
   catalog_data {
