@@ -45,18 +45,9 @@ variable "repository_configs" {
   type = list(object({
     name              = string
     description       = string
-    about_text        = optional(string)
-    usage_text        = optional(string)
-    architectures     = optional(list)
-    operating_systems = optional(list)
+    about_text        = string
+    usage_text        = string
+    architectures     = list(string)
+    operating_systems = list(string)
   }))
-}
-
-locals {
-  repository_configs = defaults(var.repository_configs, {
-    about_text        = null
-    usage_text        = null
-    architectures     = []
-    operating_systems = []
-  })
 }
