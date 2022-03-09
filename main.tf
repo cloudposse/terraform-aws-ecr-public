@@ -10,12 +10,12 @@ resource "aws_ecrpublic_repository" "this" {
   repository_name = each.value
 
   catalog_data {
-    about_text    = "About Text"
-    architectures = ["ARM"]
-    description   = "Description"
-    #logo_image_blob   = filebase64(image.png)
-    operating_systems = ["Linux"]
-    usage_text        = "Usage Text"
+    about_text        = var.about_text
+    architectures     = var.architectures
+    description       = var.description
+    logo_image_blob   = var.logo_image_blob
+    operating_systems = var.operating_systems
+    usage_text        = var.usage_text
   }
 }
 
