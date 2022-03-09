@@ -47,7 +47,7 @@ description: |-
 
 # How to use this project
 usage: |-
-  The module creates one or more Public Elastic Container Registry (ECR) Public repositories. Please note that this 
+  The module creates one or more Elastic Container Registry (ECR) Public repositories. Please note that this 
   module can only be provisioned in the US-EAST-1 region.
 
   Write access to the repositories is granted to via the `principals_full_access` list, which is a list of strings that 
