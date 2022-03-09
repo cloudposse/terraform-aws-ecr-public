@@ -49,5 +49,6 @@ variable "repository_configs" {
     usage_text        = string
     architectures     = list(string)
     operating_systems = list(string)
+    logo_image_blob   = string
   }))
 }

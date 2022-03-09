@@ -47,16 +47,8 @@ description: |-
 
 # How to use this project
 usage: |-
-  The module creates one or more Public Elastic Container Registry (ECR) repositories. All repositories created
-  will share the same configuration. Use this module multiple times to create repositories with
-  different configurations.
-
-  If you provide 1 or more names in `image_names` then one repository will be created for
-  each of the names you provide. Those names can include "namespaces", which are just
-  prefixes ending with a slash (`/`).
-
-  If you do not provide any names in `image_names`, the module will create a single ECR repo
-  named `namespace-stage-name` or just `name` depending on the value of `use_fullname`.
+  The module creates one or more Public Elastic Container Registry (ECR) Public repositories. Please note that this 
+  module can only be provisioned in the US-EAST-1 region.
 
   Write access to the repositories is granted to via the `principals_full_access` list, which is a list of strings that 
   can designate [any valid AWS Principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying).
@@ -80,6 +72,16 @@ usage: |-
     stage                  = "test"
     name                   = "ecr"
     principals_full_access = [data.aws_iam_role.ecr.arn]
+    repository_configs     = [
+      {
+        name              = "foo"
+        description       = "The repository for the foo image"
+        about_text        = null
+        usage_text        = null
+        architectures     = ["AMD64"]
+        operating_systems = ["Linux"]
+      },
+    ]
   }
   ```
 

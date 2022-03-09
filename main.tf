@@ -1,8 +1,6 @@
 locals {
   principals_full_access_non_empty = length(var.principals_full_access) > 0 ? true : false
   ecr_need_policy                  = length(var.principals_full_access) + length(var.principals_readonly_access) > 0 ? true : false
-  _name                            = var.use_fullname ? module.this.id : module.this.name
-  #image_names                      = length(var.image_names) > 0 ? var.image_names : [local._name]
 }
 
 resource "aws_ecrpublic_repository" "this" {
@@ -10,12 +8,12 @@ resource "aws_ecrpublic_repository" "this" {
   repository_name = each.value["name"]
 
   catalog_data {
-    about_text    = each.value["about_text"]
-    usage_text    = each.value["usage_text"]
-    architectures = each.value["architectures"]
-    description   = each.value["description"]
-    #logo_image_blob   = var.logo_image_blob
-    operating_systems = each.value["operating_systems"]
+    about_text        = each.value.about_text
+    usage_text        = each.value.usage_text
+    architectures     = each.value.architectures
+    description       = each.value.description
+    operating_systems = each.value.operating_systems
+    logo_image_blob   = each.value.logo_image_blob
   }
 }
 
