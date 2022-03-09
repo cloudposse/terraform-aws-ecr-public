@@ -47,8 +47,8 @@ variable "repository_configs" {
     description       = string
     about_text        = optional(string)
     usage_text        = optional(string)
-    architectures     = optional(list(string))
-    operating_systems = optional(list(string))
+    architectures     = optional(list)
+    operating_systems = optional(list)
   }))
 }
 
