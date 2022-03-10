@@ -1,14 +1,14 @@
-output "id" {
-  description = "ID of the created example"
-  value       = module.example.id
+output "registry_id" {
+  value       = module.this.enabled ? module.ecrpublic.registry_id : null
+  description = "Registry ID"
 }
 
-output "example" {
-  description = "Output \"example\" from example module"
-  value       = module.example.example
+output "registry_url" {
+  value       = module.this.enabled ? module.ecrpublic.repository_url : null
+  description = "Repository URL"
 }
 
-output "random" {
-  description = "Output \"random\" from example module"
-  value       = module.example.random
+output "repository_name" {
+  value       = module.this.enabled ? module.ecrpublic.repository_name : null
+  description = "Registry name"
 }
