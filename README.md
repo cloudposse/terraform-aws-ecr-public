@@ -117,7 +117,7 @@ module "ecrpublic" {
   namespace              = "eg"
   stage                  = "test"
   name                   = "ecr"
-  principals_full_access = [data.aws_iam_role.ecr.arn]
+  principals_full_access = [data.aws_iam_role.ecrpublic.arn]
   repository_configs     = [
     {
       name              = "foo"
