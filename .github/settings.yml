@@ -5,3 +5,4 @@ repository:
   description: Terraform Module to manage Public Docker Container Registries on AWS ECR
   homepage: https://cloudposse.com/accelerate
   topics: ""
+
