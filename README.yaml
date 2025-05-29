@@ -39,7 +39,7 @@ badges:
     url: https://github.com/cloudposse/terraform-aws-ecr-public/commits
   - name: Slack Community
     image: https://slack.cloudposse.com/for-the-badge.svg
-    url: https://slack.cloudposse.com
+    url: https://cloudposse.com/slack
 description: |-
   Terraform module to provision a Public [`AWS ECR Docker Container registry`](https://docs.aws.amazon.com/AmazonECR/latest/public/public-repositories.html/).
 
@@ -83,9 +83,5 @@ usage: |-
   }
   ```
 
-include:
-  - "docs/targets.md"
-  - "docs/terraform.md"
-
-# Contributors to this project
+include: []
 contributors: []
